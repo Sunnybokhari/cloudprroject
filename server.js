@@ -7,7 +7,7 @@ const firestore = require('./firestore');
 const Task = require('./taskModel'); 
 const multer = require('multer');
 const { uploadToGCS } = require('./storage');
-const path = require('path'); // Add this line to use the path module
+const path = require('path'); 
 
 const upload = multer({
     storage: multer.memoryStorage(),
@@ -38,9 +38,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/', (req, res) => {
-  res.send('Hello, world!');
-});
+
 
 app.get('/auth/google', passport.authenticate('google', {
     scope: ['profile', 'email']
