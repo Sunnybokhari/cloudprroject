@@ -1,10 +1,18 @@
-runtime: nodejs10
+runtime: nodejs20 # Update this to match your Node.js version
 env: standard
+instance_class: F1
+
+automatic_scaling:
+  target_cpu_utilization: 0.6
+  min_instances: 1
+  max_instances: 5
+
+env_variables:
+  # These values should be retrieved securely, for example, using Secret Manager
+  OAUTH_CLIENT_ID: "763374241634-kmn0h7kg5v99gkagueqv4k9vo2o9licd.apps.googleusercontent.com"
+  OAUTH_CLIENT_SECRET: "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"
 
 handlers:
-  - url: /
-    static_files: public/index.html
-    upload: public/index.html
-
-  - url: /
-    static_dir: public
+  - url: /.*
+    script: auto
+    secure: always
