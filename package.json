@@ -6,6 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
+    "build": "cd my-task-manager-frontend && npm install && npm run build",
+    "postbuild": "npm run build",
     "dev": "nodemon server.js"
   },
   "keywords": [],
