@@ -176,6 +176,7 @@ const Task = require('./taskModel');
 const { uploadToGCS } = require('./storage');
 
 const app = express();
+const port = process.env.PORT || 3001;
 
 // Multer setup for file uploads
 const upload = multer({
@@ -327,7 +328,6 @@ app.get('*', (req, res) => {
 });
 
 // Starting the server
-const port = process.env.PORT || 3001;
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
