@@ -7,6 +7,7 @@ const firestore = require('./firestore');
 const Task = require('./taskModel'); 
 const multer = require('multer');
 const { uploadToGCS } = require('./storage');
+const path = require('path'); // Add this line to use the path module
 
 const upload = multer({
     storage: multer.memoryStorage(),
@@ -153,3 +154,14 @@ app.delete('/task-delete/:id', async (req, res) => {
         res.status(500).send(error.message);
     }
 });
+
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, './cloudComputing/my-task-manager-frontend/build')));
+
+// The "catchall" handler: for any request that doesn't
+// match the above, send back the React app's index.html file.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, './cloudComputing/my-task-manager-frontend/build/index.html'));
+});
+
