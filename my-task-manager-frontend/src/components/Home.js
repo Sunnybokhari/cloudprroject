@@ -1,10 +1,14 @@
 import React from 'react';
 import './Home.css'; 
+import { useNavigate } from 'react-router-dom'; 
+
 
 const TaskList = () => {
+    const navigate = useNavigate();
+
     const handleLogin = () => {
         console.log("Button clicked");
-        window.location.href = `http://localhost:3001/auth/google`;
+        navigate('/auth/google'); 
     };
 
     return (
