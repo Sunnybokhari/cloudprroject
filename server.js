@@ -43,9 +43,18 @@ app.use(passport.session());
 
 
 
-app.get('/auth/google', passport.authenticate('google', {
-    scope: ['profile', 'email']
-}));
+// app.get('/auth/google', passport.authenticate('google', {
+    
+//     scope: ['profile', 'email']
+// }));
+app.get('/auth/google',
+  (req, res, next) => {
+    console.log('Attempting to authenticate with Google');
+    next();
+  },
+  passport.authenticate('google', { scope: ['profile', 'email'] })
+);
+
 
 app.get('/auth/google/redirect', passport.authenticate('google'), (req, res) => {
     res.redirect('/home');
