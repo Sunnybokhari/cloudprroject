@@ -48,7 +48,7 @@ app.get('/auth/google', passport.authenticate('google', {
 }));
 
 app.get('/auth/google/redirect', passport.authenticate('google'), (req, res) => {
-    res.redirect('http://localhost:3000/home');
+    res.redirect('/home');
 });
 
 app.get('/protected', (req, res) => {
